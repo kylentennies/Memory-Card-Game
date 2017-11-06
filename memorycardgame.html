@@ -1,0 +1,139 @@
+<!DOCTYPE> 
+<html lang = "en"> 
+<title>Let's Play the <b>MEMORY GAME</b>!</title>
+<head> 
+    <style> 
+    div
+    {
+        display: inline-block;
+    }
+
+    .card
+    {
+        height: 50px;
+        width: 35px;
+        margin: 10px;
+    }
+        .white{background-color:white;}
+        .back{background-color: powderblue(0, 0, 0);}
+
+        .lightseagreen{background-color: lightseagreen;}
+        .purple{background-color: purple;}
+        .lightcoral{background-color: lightcoral}
+        .navy{background-color: navy;}
+        .gray{background-color: rgb(91, 104, 103);}
+        .plum{background-color: rgb(71, 54, 71);}
+        .pinkorange{background-color: rgb(224, 77, 77)}
+        .mustard{background-color: rgb(128, 98, 0);} 
+        .forestgreen{background-color: rgb(3, 32, 30);} 
+        .rubyred{background-color: rgb(85, 16, 20);} 
+        .strawberrypopsicle{background-color: rgb(240, 172, 172)}
+        .burntorange{background-color: rgb(128, 62, 0);}
+        
+    </style>
+
+    <script>
+    colorArray = ["lightseagreen", "mustard", "pinkorange", "mustard", "strawberrypopsicle", "lightcoral", "lightcoral", "navy", "forestgreen", "lightseagreen", "purple", "plum", "strawberrypopsicle", "gray", "pinkorange", "gray", "rubyred", "forestgreen", "purple", "burntorange", "burntorange", "plum", "rubyred", "navy"];
+    counter = 0;
+    flippedColors =[]; //stores the colors of flipped cards
+    flippedIDs = [];  //stores the ID of flipped cards
+    matchesLeft = 12;
+    
+    twoClickMax = (index) => {
+        if (counter < 2)
+        {
+            flipCard(index);
+        }
+        
+        else
+        {
+            checkMatch();
+            flipCard(index);
+        }
+    
+    }
+    
+    flipCard = (index) => {
+        color = colorArray[index];
+        document.getElementById(index).innerHTML = `<div class = "card ${color}" id = "${index}"></div>`;
+        flippedColors.push(color);
+        flippedIDs.push(index);
+        counter += 1;
+    
+    }
+    
+    checkMatch = () => {
+        if (flippedColors[0] == flippedColors[1])
+        {
+            yesMatch ();
+        }
+        else 
+        {
+            noMatch ();  
+        }
+    flippedIDs = [];   //reset area
+    flippedColors = [];
+    counter = 0;
+    
+        if (matchesLeft == 0)
+        {
+            document.getElementById("win").innerHTML += "you've really won.  you've done it.  you have won at life."
+        }
+    }
+    
+    yesMatch = () => 
+    {
+        document.getElementById(flippedIDs[0]).innerHTML = `<div class = "card white" onClick = whiteButton()> </div>`
+        document.getElementById(flippedIDs[1]).innerHTML = `<div class = "card white" onClick = whiteButton()> </div>`
+        matchesLeft -= 1;
+    }
+    
+    noMatch = () => 
+    {
+        document.getElementById(flippedIDs[0]).innerHTML = `<div class = "card back" onClick = "twoClickMax(${flippedIDs[0]})">`
+        document.getElementById(flippedIDs[1]).innerHTML = `<div class = "card back" onClick = "twoClickMax(${flippedIDs[1]})">`
+    }
+    
+    whiteButton = () => 
+    {
+        if (counter >= 2)
+        {
+            checkMatch();
+        }
+    }
+    </script>
+
+</head>
+
+<body id = "body">
+    <header>Let's Play the <b>MEMORY GAME</b>!!</header>
+            <div id = 0><div class = "card back" onClick = "twoClickMax(0)"></div></div>
+            <div id = 1><div class = "card back" onClick = "twoClickMax(1)"></div></div>
+            <div id = 2><div class = "card back" onClick = "twoClickMax(2)"></div></div>
+            <div id = 3><div class = "card back" onClick = "twoClickMax(3)"></div></div>
+            <div id = 4><div class = "card back" onClick = "twoClickMax(4)"></div></div>
+            <div id = 5><div class = "card back" onClick = "twoClickMax(5)"></div></div>
+            <div id = 6><div class = "card back" onClick = "twoClickMax(6)"></div></div>
+            <div id = 7><div class = "card back" onClick = "twoClickMax(7)"></div></div>
+        </br>
+            <div id = 8><div class = "card back" onClick = "twoClickMax(8)"></div></div>
+            <div id = 9><div class = "card back" onClick = "twoClickMax(9)"></div></div>
+            <div id = 10><div class = "card back" onClick = "twoClickMax(10)"></div></div>
+            <div id = 11><div class = "card back" onClick = "twoClickMax(11)"></div></div>
+            <div id = 12><div class = "card back" onClick = "twoClickMax(12)"></div></div>
+            <div id = 13><div class = "card back" onClick = "twoClickMax(13)"></div></div>
+            <div id = 14><div class = "card back" onClick = "twoClickMax(14)"></div></div>
+            <div id = 15><div class = "card back" onClick = "twoClickMax(15)"></div></div>
+        </br>
+            <div id = 16><div class = "card back" onClick = "twoClickMax(16)"></div></div>
+            <div id = 17><div class = "card back" onClick = "twoClickMax(17)"></div></div>
+            <div id = 18><div class = "card back" onClick = "twoClickMax(18)"></div></div>
+            <div id = 19><div class = "card back" onClick = "twoClickMax(19)"></div></div>
+            <div id = 20><div class = "card back" onClick = "twoClickMax(20)"></div></div>
+            <div id = 21><div class = "card back" onClick = "twoClickMax(21)"></div></div>
+            <div id = 22><div class = "card back" onClick = "twoClickMax(22)"></div></div>
+            <div id = 23><div class = "card back" onClick = "twoClickMax(23)"></div></div>
+            <h1 id = "win"></h1>
+ </body>
+        
+</html>
